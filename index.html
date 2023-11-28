@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biancaneve</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1 id="sium" style="color: red; font-size: 15vw; margin-top: 15vh;">Biancaneve VS Regina</h1>
+    <button id="start-button">
+        <img src="https://cdn2.iconfinder.com/data/icons/sword-pixel/48/pixel_sword-27-512.png" style="width:62px;height:62px;" alt="buttonpng" />
+    </button>
+    <div id="game-container">
+        <progress id="LifeQ" value="160" max="160" class="absolute"></progress>
+        <img src="queen.jpg" width="120" height="140" class="absolute" id="queen" style="top: 460px; display: none;">
+        <img src="biancaviva.jpg" width="120" height="140" class="absolute" id="snowwhite">
+    </div>
+    <audio id="background-music" loop>
+        <source src="background.mp3" type="audio/mp3">
+        Il tuo browser non supporta l'elemento audio.
+    </audio>
+    
+    <audio id="game-over-sound" >
+        <source src="risata.mp3" type="audio" autoplay>
+        Il tuo browser non supporta l'elemento audio.
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

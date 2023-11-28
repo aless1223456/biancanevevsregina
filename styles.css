@@ -1,0 +1,41 @@
+body {
+    font-family: impact;
+    text-align: center;
+    background-image: url('bosco.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    margin: 0;
+}
+
+#start-button {
+    top: 55%;
+    left: 50%;
+    position: absolute;
+    cursor: pointer;
+}
+
+#game-container {
+    position: relative;
+}
+
+.absolute {
+    display: none;
+    position: absolute;
+}
+
+#LifeQ {
+    display: none;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+h2.game-over {
+    color: rgb(0, 0, 0);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
