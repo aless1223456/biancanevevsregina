@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function ShowGameOver() {
         
-        document.body.appendChild(gameOverText);
+        
         ZoomOnQueen();
         var backgroundMusic = document.getElementById("background-music");
         backgroundMusic.pause();
