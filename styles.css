@@ -32,10 +32,17 @@ body {
     transform: translateX(-50%);
 }
 
-h2.game-over {
-    color: rgb(0, 0, 0);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+#queen,
+#snowwhite {
+    width: 120px;
+    height: 140px;
+}
+
+@media only screen and (max-width: 600px) {
+    /* Stili per schermi di dimensioni ridotte */
+    #queen,
+    #snowwhite {
+        width: 80px;
+        height: 90px;
+    }
 }
