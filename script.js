@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const startButton = document.getElementById('start-button');
     let isGameOver = false;
+    let moveSnowwhiteInterval;
 
     startButton.addEventListener('click', startGame);
     startButton.addEventListener('touchstart', startGame);
@@ -8,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function startGame() {
         console.log("Il gioco sta iniziando!");
         startButton.style.display = "none";
+        var LifeQ = document.getElementById("LifeQ");
+        LifeQ.style.width = "70%";
+        LifeQ.style.height = "50px"
 
         document.getElementById('sium').style.display = 'none';
 
@@ -15,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         OnGame();
         var backgroundMusic = document.getElementById("background-music");
         backgroundMusic.play();
-        console.log("backgound attivo");
+        console.log("background attivo");
 
         document.addEventListener('mousemove', (event) => {
             if (!isGameOver) {
@@ -41,6 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('touchstart', () => {
             ChangeLife();
         });
+
+        
+        moveSnowwhiteInterval = setInterval(() => {
+            MoveSnowwhiteRandomly();
+        }, 1000);
     }
 
     function OnGame() {
@@ -56,30 +65,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function MoveQueen(event) {
-        var queen = document.getElementById("queen");
-        queen.style.display = "block";
-        queen.style.left = event.clientX + "px";
-        queen.style.top = event.clientY + "px";
+        if (!isGameOver) {
+            var queen = document.getElementById("queen");
+            queen.style.display = "block";
+            queen.style.left = event.clientX + "px";
+            queen.style.top = event.clientY + "px";
 
-        var snowwhite = document.getElementById("snowwhite");
+            var snowwhite = document.getElementById("snowwhite");
 
-        if (isColliding(queen, snowwhite)) {
-            ChangeLife();
-            MoveSnowwhiteRandomly();
+            if (isColliding(queen, snowwhite)) {
+                ChangeLife();
+                
+                MoveSnowwhiteRandomly();
+            }
+        }
+    }
+    function MoveSnowwhiteRandomly() {
+        if (!isGameOver) {
+            var snowwhite = document.getElementById("snowwhite");
+            var maxX = window.innerWidth - snowwhite.clientWidth;
+            var maxY = window.innerHeight - snowwhite.clientHeight;
+
+            var newX = Math.random() * maxX;
+            var newY = Math.random() * maxY;
+
+            snowwhite.style.left = newX + "px";
+            snowwhite.style.top = newY + "px";
+            var queen = document.getElementById("queen");
+            RotateQueen(queen, snowwhite);
+            console.log("si sta girando");
         }
     }
 
-    function MoveSnowwhiteRandomly() {
-        var snowwhite = document.getElementById("snowwhite");
-        var maxX = window.innerWidth - snowwhite.clientWidth;
-        var maxY = window.innerHeight - snowwhite.clientHeight;
+    function RotateQueen(queen, snowwhite) {
+        var queenRect = queen.getBoundingClientRect();
+        var snowwhiteRect = snowwhite.getBoundingClientRect();
 
-        var newX = Math.random() * maxX;
-        var newY = Math.random() * maxY;
-
-        snowwhite.style.left = newX + "px";
-        snowwhite.style.top = newY + "px";
+        if (queenRect.left < snowwhiteRect.left) {
+            // Biancaneve è alla sinistra della regina
+            queen.style.transform = "scaleX(1)";
+        } else {
+            // Biancaneve è alla destra della regina
+            queen.style.transform = "scaleX(-1)";
+        }
     }
+
+  
 
     function isColliding(element1, element2) {
         const rect1 = element1.getBoundingClientRect();
@@ -97,7 +128,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isGameOver) {
             var LifeQ = document.getElementById("LifeQ");
             LifeQ.value -= 10;
-
+    
+            
+            if (LifeQ.value < 50) {
+                LifeQ.style.backgroundColor = "red";
+            }
+    
+            
             if (LifeQ.value <= 0) {
                 LifeQ.value = 0;
                 document.body.style.backgroundColor = "red";
@@ -109,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
+    
 
     function ShowGameOver() {
         var gameOverText = document.createElement("h2");
@@ -118,10 +156,12 @@ document.addEventListener('DOMContentLoaded', () => {
         ZoomOnQueen();
         var backgroundMusic = document.getElementById("background-music");
         backgroundMusic.pause();
-        console.log("musica spenta")
+        console.log("musica spenta");
         var gameover_Music = document.getElementById("game-over-sound");
         gameover_Music.play();
-       
+        
+        
+        clearInterval(moveSnowwhiteInterval);
     }
 
     function ZoomOnQueen() {
@@ -132,13 +172,17 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             queen.style.transition = "none";
         }, 2000);
-       
     }
+
     function StopGame() {
         isGameOver = true;
         document.removeEventListener('mousemove', MoveQueen);
         document.removeEventListener('touchmove', MoveQueen);
         document.removeEventListener('click', ChangeLife);
         document.removeEventListener('touchstart', ChangeLife);
+
+        
+        clearInterval(moveSnowwhiteInterval);
     }
 });
+
