@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         moveSnowwhiteInterval = setInterval(() => {
             MoveSnowwhiteRandomly();
-        }, 1000);
+        }, 500);
     }
 
     function OnGame() {
