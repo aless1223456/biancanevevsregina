@@ -149,9 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
     function ShowGameOver() {
-        var gameOverText = document.createElement("h2");
-        gameOverText.textContent = "Biancaneve è morta";
-        gameOverText.className = "game-over";
+        
         document.body.appendChild(gameOverText);
         ZoomOnQueen();
         var backgroundMusic = document.getElementById("background-music");
