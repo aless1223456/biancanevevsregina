@@ -38,18 +38,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        document.addEventListener('click', () => {
+        /*document.addEventListener('click', () => {
             ChangeLife();
         });
 
         document.addEventListener('touchstart', () => {
             ChangeLife();
-        });
+        });*/
 
         
         moveSnowwhiteInterval = setInterval(() => {
             MoveSnowwhiteRandomly();
-        }, 500);
+        }, 750);
     }
 
     function OnGame() {
