@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const startButton = document.getElementById('start-button');
     let isGameOver = false;
     let moveSnowwhiteInterval;
-
+    let snowwhiteSpeed= 1000;
     startButton.addEventListener('click', startGame);
     startButton.addEventListener('touchstart', startGame);
 
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         moveSnowwhiteInterval = setInterval(() => {
             MoveSnowwhiteRandomly();
-        }, 750);
+        }, snowwhiteSpeed);
     }
 
     function OnGame() {
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isGameOver) {
             var LifeQ = document.getElementById("LifeQ");
             LifeQ.value -= 10;
-    
+            snowwhiteSpeed-=100;
             
             if (LifeQ.value < 50) {
                 LifeQ.style.backgroundColor = "red";
