@@ -10,13 +10,19 @@
 
 <body>
     <h1 id="sium" style="color: red; font-size: 15vw; margin-top: 15vh;">Biancaneve VS Regina</h1>
-    <button id="start-button">
+    <button id="start-button" >
         <img src="https://cdn2.iconfinder.com/data/icons/sword-pixel/48/pixel_sword-27-512.png" style="width:62px;height:62px;" alt="buttonpng" />
+
     </button>
+    
     <div id="game-container">
-        <progress id="LifeQ" value="160" max="160" class="absolute"></progress>
-        <img src="queenside.jpg" width="120" height="140" class="absolute" id="queen" style="top: 460px; display: none;">
-        <img src="biancaviva.jpg" width="120" height="140" class="absolute" id="snowwhite">
+        <progress id="LifeQ" value="160" max="160"  class="absolute"></progress>
+        <div id="queen-container"></div>
+        <img src="queenandapple.png" width="120" height="140" class="absolute" id="queen" style="top: 460px; display: none;">
+        <img src="biancaviva.png" width="120" height="140" class="absolute" id="snowwhite">
+          <div id="running">  
+            <img src="mela.jpg" width="120" height="140" class="absolute" id="apple">
+        </div>
     </div>
     <audio id="background-music" loop>
         <source src="background.mp3" type="audio/mp3">
@@ -24,7 +30,7 @@
     </audio>
     
     <audio id="game-over-sound" >
-        <source src="risata.mp3" type="audio" autoplay>
+        <source src="laugh.mp3" type="audio/mp3" >
         Il tuo browser non supporta l'elemento audio.
     </audio>
 

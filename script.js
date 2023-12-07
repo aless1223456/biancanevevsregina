@@ -2,10 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const startButton = document.getElementById('start-button');
     let isGameOver = false;
     let moveSnowwhiteInterval;
-
+    let snowwhiteSpeed= 1000;
+    let backgroundMusic = document.getElementById("background-music");
     startButton.addEventListener('click', startGame);
     startButton.addEventListener('touchstart', startGame);
-
+    
     function startGame() {
         console.log("Il gioco sta iniziando!");
         startButton.style.display = "none";
@@ -17,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         SetBackground();
         OnGame();
-        var backgroundMusic = document.getElementById("background-music");
+        
         backgroundMusic.play();
         console.log("background attivo");
 
@@ -38,18 +39,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        document.addEventListener('click', () => {
+        /*document.addEventListener('click', () => {
             ChangeLife();
         });
 
         document.addEventListener('touchstart', () => {
             ChangeLife();
-        });
+        });*/
 
         
         moveSnowwhiteInterval = setInterval(() => {
             MoveSnowwhiteRandomly();
-        }, 1000);
+        }, snowwhiteSpeed);
     }
 
     function OnGame() {
@@ -59,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function SetBackground() {
-        document.body.style.backgroundImage = "url('https://wallpapercave.com/wp/wp2758170.gif')";
+        document.body.style.backgroundImage = "url('gamingBack.jpg')";
         document.body.style.backgroundRepeat = "no-repeat";
         document.body.style.backgroundAttachment = "fixed";
     }
@@ -103,10 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (queenRect.left < snowwhiteRect.left) {
             // Biancaneve è alla sinistra della regina
-            queen.style.transform = "scaleX(1)";
+            queen.style.transform = "scaleX(-1)";
         } else {
             // Biancaneve è alla destra della regina
-            queen.style.transform = "scaleX(-1)";
+            queen.style.transform = "scaleX(1)";
         }
     }
 
@@ -128,10 +129,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isGameOver) {
             var LifeQ = document.getElementById("LifeQ");
             LifeQ.value -= 10;
-    
+            snowwhiteSpeed-=100;
             
             if (LifeQ.value < 50) {
-                LifeQ.style.backgroundColor = "red";
+                LifeQ.style.accentColor = "red";
             }
     
             
@@ -139,7 +140,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 LifeQ.value = 0;
                 document.body.style.backgroundColor = "red";
                 var snowwhite = document.getElementById("snowwhite");
-                snowwhite.src = "biancaneve.jpg";
+                snowwhite.src = "biancaneveaddormentata.png";
+                var queen = document.getElementById("queen");
+                queen.src = "queensmiling_remv.png";
                 ShowGameOver();
                 StopGame();
                 console.log("gioco finito");
@@ -157,6 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("musica spenta");
         var gameover_Music = document.getElementById("game-over-sound");
         gameover_Music.play();
+        console.log("risata suona");
         
         
         clearInterval(moveSnowwhiteInterval);
@@ -183,4 +187,10 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(moveSnowwhiteInterval);
     }
 });
+
+
+
+
+
+
 

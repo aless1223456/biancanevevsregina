@@ -19,6 +19,7 @@ body {
     position: relative;
 }
 
+
 .absolute {
     display: none;
     position: absolute;
@@ -27,10 +28,12 @@ body {
 #LifeQ {
     display: none;
     position: absolute;
+    accent-color: blue;
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
 }
+
 
 #queen,
 #snowwhite {
